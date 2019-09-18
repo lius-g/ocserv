@@ -81,14 +81,14 @@ Download_ocserv(){
 	
 	if [[ -e ${file} ]]; then
 		mkdir "${conf_file}"
-		wget --no-check-certificate -N -P "${conf_file}" "https://github.com/lius-g/ocserv/blob/master/ocserv.conf"
+		wget --no-check-certificate -N -P "${conf_file}" "https://raw.githubusercontent.com/lius-g/ocserv/master/ocserv.conf"
 		[[ ! -s "${conf}" ]] && echo -e "${Error} ocserv 配置文件下载失败 !" && rm -rf "${conf_file}" && exit 1
 	else
 		echo -e "${Error} ocserv 编译安装失败，请检查！" && exit 1
 	fi
 }
 Service_ocserv(){
-	if ! wget --no-check-certificate hhttps://github.com/lius-g/ocserv/blob/master/ocserv_debian -O /etc/init.d/ocserv; then
+	if ! wget --no-check-certificate https://raw.githubusercontent.com/lius-g/ocserv/master/ocserv_debian -O /etc/init.d/ocserv; then
 		echo -e "${Error} ocserv 服务 管理脚本下载失败 !" && over
 	fi
 	chmod +x /etc/init.d/ocserv
@@ -505,13 +505,13 @@ Set_iptables(){
 	chmod +x /etc/network/if-pre-up.d/iptables
 }
 Update_Shell(){
-	sh_new_ver=$(wget --no-check-certificate -qO- -t1 -T3 "https://github.com/lius-g/ocserv/edit/master/ocserv.sh"|grep 'sh_ver="'|awk -F "=" '{print $NF}'|sed 's/\"//g'|head -1) && sh_new_type="github"
+	sh_new_ver=$(wget --no-check-certificate -qO- -t1 -T3 "https://raw.githubusercontent.com/lius-g/ocserv/master/ocserv.sh"|grep 'sh_ver="'|awk -F "=" '{print $NF}'|sed 's/\"//g'|head -1) && sh_new_type="github"
 	[[ -z ${sh_new_ver} ]] && echo -e "${Error} 无法链接到 Github !" && exit 0
 	if [[ -e "/etc/init.d/ocserv" ]]; then
 		rm -rf /etc/init.d/ocserv
 		Service_ocserv
 	fi
-	wget -N --no-check-certificate "https://github.com/lius-g/ocserv/edit/master/ocserv.sh" && chmod +x ocserv.sh
+	wget -N --no-check-certificate "https://raw.githubusercontent.com/lius-g/ocserv/master/ocserv.sh" && chmod +x ocserv.sh
 	echo -e "脚本已更新为最新版本[ ${sh_new_ver} ] !(注意：因为更新方式为直接覆盖当前运行的脚本，所以可能下面会提示一些报错，无视即可)" && exit 0
 }
 check_sys

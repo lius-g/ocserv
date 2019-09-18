@@ -233,7 +233,7 @@ Set_ocserv(){
 Set_username(){
 	echo "请输入 要添加的VPN账号 用户名"
 	read -e -p "(默认: guest1):" username
-	[[ -z "${username}" ]] && username="admin"
+	[[ -z "${username}" ]] && username="guest1"
 	echo && echo -e "	用户名 : ${Red_font_prefix}${username}${Font_color_suffix}" && echo
 }
 Set_passwd(){

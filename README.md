@@ -1,2 +1,2 @@
 # ocserv
-The Self-Cultivatiom of Leeks.
+The Self-Cultivation of Leeks.
